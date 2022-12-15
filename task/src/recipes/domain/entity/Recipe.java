@@ -1,12 +1,9 @@
 package recipes.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.Currency;
 import org.springframework.data.annotation.CreatedBy;
 
 import javax.persistence.*;
@@ -17,7 +14,6 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Table(name = "orders")
 public class Recipe {
@@ -44,11 +40,11 @@ public class Recipe {
 
     @Column(name = "ingredients")
     @NotEmpty
-    private String ingredients[];
+    private String[] ingredients;
 
     @Column(name = "directions")
     @NotEmpty
-    private String directions[];
+    private String[] directions;
 
     @CreatedBy
     @ManyToOne

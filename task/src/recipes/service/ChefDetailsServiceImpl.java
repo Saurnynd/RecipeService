@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import recipes.domain.entity.Chef;
 import recipes.repository.ChefRepository;
 import recipes.rest.exceptions.ChefAlreadyExistException;
-import recipes.rest.exceptions.RecipeNotFoundException;
+import recipes.rest.exceptions.ChefNotFoundException;
 import recipes.security.ChefDetailsImpl;
 
 @Service
@@ -26,7 +26,7 @@ public class ChefDetailsServiceImpl implements UserDetailsService {
     }
 
     public Chef findChefByUsername(String login) {
-        return chefRepository.findById(login).orElseThrow(() -> new RecipeNotFoundException(""));
+        return chefRepository.findById(login).orElseThrow(() -> new ChefNotFoundException(""));
     }
 
     public void addChef(Chef chef) {

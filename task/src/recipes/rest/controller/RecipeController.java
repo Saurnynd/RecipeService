@@ -31,13 +31,13 @@ public class RecipeController {
     private final RecipeService recipeService;
 
     @Autowired
-    NewRecipeMapper newRecipeMapper;
+    private NewRecipeMapper newRecipeMapper;
 
     @Autowired
-    RecipeMapper recipeMapper;
+    private RecipeMapper recipeMapper;
 
     @Autowired
-    ListRecipeMapper listRecipeMapper;
+    private ListRecipeMapper listRecipeMapper;
 
     @Autowired
     public RecipeController(RecipeService recipeService) {
