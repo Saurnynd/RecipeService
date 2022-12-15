@@ -16,7 +16,7 @@ public class ChefDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.EMPTY_LIST;
+        return Collections.emptyList();
     }
 
     @Override

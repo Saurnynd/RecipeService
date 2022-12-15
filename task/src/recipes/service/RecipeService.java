@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import recipes.domain.entity.Recipe;
 import recipes.repository.RecipeRepository;
-import recipes.rest.exceptions.UserNotFoundException;
+import recipes.rest.exceptions.RecipeNotFoundException;
 
 import java.util.*;
 
@@ -17,14 +17,8 @@ public class RecipeService {
     private final RecipeRepository recipeRepository;
 
     @Autowired
-    public RecipeService(RecipeRepository repository) {
+    public RecipeService(final RecipeRepository repository) {
         this.recipeRepository = repository;
-    }
-
-    public List<Recipe> getAllRecipes() {
-        List<Recipe> recipeAll = new ArrayList<>();
-        recipeRepository.findAll().forEach(recipeAll::add);
-        return recipeAll;
     }
 
     public long addRecipe(final Recipe recipe) {
@@ -43,11 +37,10 @@ public class RecipeService {
     }
 
     public Recipe findById(final long id) {
-        return recipeRepository.findById(id).orElseThrow(() -> new UserNotFoundException(""));
+        return recipeRepository.findById(id).orElseThrow(() -> new RecipeNotFoundException(""));
     }
 
     public void deleteById(final long id) {
-        findById(id);
         recipeRepository.deleteById(id);
     }
 
