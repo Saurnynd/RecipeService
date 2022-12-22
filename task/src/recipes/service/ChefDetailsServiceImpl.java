@@ -7,35 +7,36 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import recipes.domain.entity.Chef;
-import recipes.repository.ChefRepository;
-import recipes.rest.exceptions.ChefAlreadyExistException;
-import recipes.rest.exceptions.ChefNotFoundException;
+import recipes.domain.repository.ChefRepository;
+import recipes.exceptions.ChefAlreadyExistException;
+import recipes.exceptions.ChefNotFoundException;
 import recipes.security.ChefDetailsImpl;
 
 @Service
+
 public class ChefDetailsServiceImpl implements UserDetailsService {
 
     private final ChefRepository chefRepository;
 
     @Autowired
-    PasswordEncoder encoder;
+    private PasswordEncoder encoder;
 
     @Autowired
-    public ChefDetailsServiceImpl(ChefRepository repository) {
-        this.chefRepository = repository;
+    public ChefDetailsServiceImpl(ChefRepository chefRepository) {
+        this.chefRepository = chefRepository;
     }
+
 
     public Chef findChefByUsername(String login) {
         return chefRepository.findById(login).orElseThrow(() -> new ChefNotFoundException(""));
     }
 
-    public void addChef(Chef chef) {
+    public void add(Chef chef) {
         if (chefRepository.existsById(chef.getEmail()))
             throw new ChefAlreadyExistException("");
         chef.setPassword(encoder.encode(chef.getPassword()));
         chefRepository.save(chef);
     }
-
 
 
     @Override

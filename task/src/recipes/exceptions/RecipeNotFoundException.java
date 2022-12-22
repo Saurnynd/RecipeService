@@ -1,13 +1,13 @@
-package recipes.rest.exceptions;
+package recipes.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ChefNotFoundException extends RuntimeException {
+public class RecipeNotFoundException extends RuntimeException {
     private final String message;
 
-    public ChefNotFoundException(String message) {
+    public RecipeNotFoundException(String message) {
         this.message = message;
     }
 

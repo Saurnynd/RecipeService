@@ -1,10 +1,10 @@
-package recipes.rest.dto;
+package recipes.api.recipe.dto;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Builder
 @Getter
-public class NewRecipeDTO {
+public class RecipeFilter {
     private long id;
 }
